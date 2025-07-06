@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>💸 Budget Dashboard</h1>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="card">
+      <h2>👤 Profile</h2>
+      <p id="userProfile"></p>
+    </section>
+
+    <!-- Record Transaction Section -->
+<section class="card">
+  <h2>💰 Record Transaction</h2>
+  <form id="transactionForm">
+    <div class="grid">
+      <div>
+        <label for="type">Type</label>
+        <select id="type">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+      </div>
+      <div>
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" placeholder="Amount" required />
+      </div>
+      <div>
+        <label for="category">Category</label>
+        <input type="text" id="category" placeholder="Category" />
+      </div>
+      <div>
+        <label for="date">Date</label>
+        <input type="date" id="date" required />
+      </div>
+      <div class="checkbox-field">
+        <label><input type="checkbox" id="recurring" /> Recurring</label>
+      </div>
+      <div>
+        <label for="recurringInterval">Recurring Interval</label>
+        <select id="recurringInterval">
+          <option value="">Select Interval</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-action" style="text-align: center;">
+      <button type="submit">➕ Add Transaction</button>
+    </div>
+  </form>
+</section>
+
+<!-- Transactions List Section -->
+<section class="card">
+  <h2>📄 Transactions</h2>
+  <ul id="transactionList"></ul>
+</section>
+
+    <!-- Monthly Progress Section -->
+    <section class="card">
+      <h2>📊 Monthly Progress</h2>
+      <progress id="budgetProgress" value="0" max="100"></progress>
+    </section>
+
+ <section class="card" id="budgetGoals">
+  <h2>🎯 Budget Goals</h2>
+
+  <form id="budgetForm">
+    <div class="form-grid">
+      <div>
+        <label for="goalCategory">Category</label>
+        <input type="text" id="goalCategory" placeholder="Category" required />
+      </div>
+      <div>
+        <label for="goalLimit">Amount</label>
+        <input type="number" id="goalLimit" placeholder="Amount" required />
+      </div>
+    </div>
+    <div class="form-action">
+      <button type="submit">➕ Set Goal</button>
+    </div>
+  </form>
+
+  <div class="goals-grid">
+    <div class="completed">
+      <h3>✅ Completed Goals</h3>
+      <ul id="completedGoalsList"></ul>
+    </div>
+    <div class="uncompleted">
+      <h3>⏳ Uncompleted Goals</h3>
+      <ul id="uncompletedGoalsList"></ul>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Analytics & Upcoming Expenses Section -->
+    <section class="card">
+      <div class="grid">
+        <div>
+          <h2>📈 Expense Breakdown</h2>
+          <canvas id="categoryChart"></canvas>
+        </div>
+        <div>
+          <h2>🗓️ Upcoming Expenses</h2>
+          <ul>
+    <li><span>Electricity Bill</span> <span>৳1,200</span></li>
+    <li><span>Wi-Fi Subscription</span> <span>৳999</span></li>
+    <li><span>Netflix</span> <span>৳500</span></li>
+    <li><span>Loan EMI</span> <span>৳2,000</span></li>
+  </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <form action="/logout" method="POST" class="footer-form">
+        <button type="submit">Logout</button>
+      </form>
+      <a class="export-link" href="/export">Download CSV</a>
+      <button id="toggleDark">Toggle Dark Mode</button>
+    </footer>
+  </div>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+
+
+</html>

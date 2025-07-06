@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Budget App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <h1>💸 Budget App</h1>
+    
+    <div class="card">
+      <h2>Login with Email</h2>
+      <form action="/login" method="POST" id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required />
+        
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required />
+        
+        <button type="submit">Login</button>
+      </form>
+
+      <div class="auth-links">
+        <a href="register.html">📝 Create Account</a>
+        <a href="forgot_pass.html">🔒 Forgot Password</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // prevent default form submission
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email, password })
+      });
+
+      if (res.ok) {
+        // Login success - redirect to dashboard
+        window.location.href = '/dashboard';
+      } else {
+        const data = await res.json();
+        if (data.error) {
+          alert(data.error);
+        } else {
+          alert('Login failed. Please try again.');
+        }
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      alert('An error occurred. Please try again.');
+    }
+  });
+</script>
+
+</body>
+</html>

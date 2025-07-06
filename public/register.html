@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | Budget App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <h1>📝 Create Account</h1>
+    <div class="card">
+      <form action="/register" method="POST" id="registerForm">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Name" required />
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" required />
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" required />
+
+        <button type="submit">Register</button>
+      </form>
+
+      <div class="auth-links">
+        <a href="index.html">🔑 Back to Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Optional: JavaScript validation for password strength
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value;
+
+      // Simple password validation (minimum 8 characters, at least one letter and one number)
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+      if (!passwordRegex.test(password)) {
+        e.preventDefault();
+        alert('Password must be at least 8 characters long and contain at least one letter and one number.');
+        return;
+      }
+
+      // You can also add email validation or other checks here
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        alert('Please enter a valid email address.');
+        return;
+      }
+    });
+  </script>
+</body>
+</html>

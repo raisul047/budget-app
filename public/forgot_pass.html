@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reset Password | Budget App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <h1>🔒 Reset Password</h1>
+    <div class="card">
+      <form action="/request-reset" method="POST" id="resetForm">
+        <label for="username">Enter your username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required/>
+        <button type="submit">Continue</button>
+      </form>
+
+      <div class="auth-links">
+        <a href="index.html">🔑 Back to Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('resetForm').addEventListener('submit', function(e) {
+      const username = document.getElementById('username').value.trim();
+      if (username.length < 3) {
+        e.preventDefault();
+        alert('Please enter a valid username.');
+      }
+    });
+  </script>
+</body>
+</html>
